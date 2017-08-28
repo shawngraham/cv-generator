@@ -1,0 +1,238 @@
+---
+output: 
+  pdf_document:
+    latex_engine: pdflatex
+    template: svm-latex-cv.tex
+geometry: margin=1in
+
+title: "CV"
+author: Shawn Graham
+
+jobtitle: "Associate Professor of Digital Humanities"
+address: "Department of History · Carleton University · Ottawa, Ontario"
+
+email: shawn.graham@carleton.ca
+# github: shawngraham
+phone: "x2842"
+web: electricarchaeology.ca
+updated: no
+
+keywords: R Markdown, academic CV, template
+
+fontfamily: mathpazo
+fontfamilyoptions: sc, osf
+fontsize: 11pt
+linkcolor: blue
+urlcolor: blue
+
+
+---
+
+# Education
+
+*University of Reading*, Ph.D., Archaeology \hfill 2002
+
+*University of Reading*, M.A., City of Rome \hfill 1998
+
+*Wilfrid Laurier University*, B.A. Hons, Archaeology \hfill 1997
+
+# Employment
+
+*Carleton University, Department of History*
+
+Associate Professor \hfill 2014-2017
+
+Assistant Professor \hfill 2010-2014
+
+# Professional Honours
+
+# Current Research Interests
+
+# Publications
+
+##Books
+
+```{r echo=FALSE, results="asis",comment=FALSE}
+library(RefManageR)
+file_books <- ReadBib("books.bib")
+dates <- unlist(unique(file_books$year))[order(unlist(unique(file_books$year)),decreasing = TRUE)]
+#Prints recerences
+for (date in dates) {
+  print(file_books[list(year=date)],.opts = list(style="markdown",bib.style ="authoryear" ,max.names =10,dashed=FALSE))
+  cat("\n")
+}
+
+```
+
+
+## Chapters in Edited Books
+
+```{r echo=FALSE, results="asis",comment=FALSE}
+
+file_journals <- ReadBib("chapters.bib")
+dates <- unlist(unique(file_journals$year))[order(unlist(unique(file_journals$year)),decreasing = TRUE)]
+
+for (date in dates) {
+  
+  print(file_journals[list(year=date)],.opts = list(style="markdown",bib.style ="authoryear" ,max.names =10,dashed=FALSE))
+  cat("\n")
+}
+```
+
+## Articles in Refereed Journals
+
+```{r echo=FALSE, results="asis",comment=FALSE}
+
+file_journals <- ReadBib("articles.bib")
+dates <- unlist(unique(file_journals$year))[order(unlist(unique(file_journals$year)),decreasing = TRUE)]
+
+for (date in dates) {
+  
+  print(file_journals[list(year=date)],.opts = list(style="markdown",bib.style ="authoryear" ,max.names =10,dashed=FALSE))
+  cat("\n")
+}
+```
+
+## Articles in Refereed Edited Collections
+
+```{r echo=FALSE, results="asis",comment=FALSE}
+
+file_journals <- ReadBib("ref-art-ed-coll.bib")
+dates <- unlist(unique(file_journals$year))[order(unlist(unique(file_journals$year)),decreasing = TRUE)]
+
+for (date in dates) {
+  
+  print(file_journals[list(year=date)],.opts = list(style="markdown",bib.style ="authoryear" ,max.names =10,dashed=FALSE))
+  cat("\n")
+}
+```
+
+## Articles in Refereed Conference Proceedings
+
+## Major Encyclopedia or Dictionary Articles
+
+## Catalogues
+
+```{r echo=FALSE, results="asis",comment=FALSE}
+
+file_journals <- ReadBib("catalogues.bib")
+dates <- unlist(unique(file_journals$year))[order(unlist(unique(file_journals$year)),decreasing = TRUE)]
+
+for (date in dates) {
+  
+  print(file_journals[list(year=date)],.opts = list(style="markdown",bib.style ="authoryear" ,max.names =10,dashed=FALSE))
+  cat("\n")
+}
+```
+
+## Textbooks
+
+## Published Technical Reports
+
+## Creative Writing
+
+## Articles in Non-Refereed Journals and Miscellaneous Scholarly Publications
+
+```{r echo=FALSE, results="asis",comment=FALSE}
+
+file_journals <- ReadBib("non-reviewed-articles.bib")
+dates <- unlist(unique(file_journals$year))[order(unlist(unique(file_journals$year)),decreasing = TRUE)]
+
+for (date in dates) {
+  
+  print(file_journals[list(year=date)],.opts = list(style="markdown",bib.style ="authoryear" ,max.names =10,dashed=FALSE))
+  cat("\n")
+}
+```
+
+## Book Reviews
+
+```{r echo=FALSE, results="asis",comment=FALSE}
+
+file_journals <- ReadBib("reviews.bib")
+dates <- unlist(unique(file_journals$year))[order(unlist(unique(file_journals$year)),decreasing = TRUE)]
+
+for (date in dates) {
+  
+  print(file_journals[list(year=date)],.opts = list(style="markdown",bib.style ="authoryear" ,max.names =10,dashed=FALSE))
+  cat("\n")
+}
+```
+
+# Editorial Responsibilities
+
+# Papers Presented
+## ...to learned societies
+
+```{r echo=FALSE, results="asis",comment=FALSE}
+file_conf <- ReadBib("presentation-learned.bib")
+dates <- unlist(unique(file_conf$year))[order(unlist(unique(file_conf$year)),decreasing = TRUE)]
+
+#Prints recerences
+for (date in dates) {
+  print(file_conf[list(year=date)],.opts = list(style="markdown",bib.style ="authoryear" ,max.names =10,dashed=FALSE))
+  cat("\n")
+}
+```
+
+## ...to other academic bodies
+
+## ...non-academic talks
+
+# Other Important Forms of Scholarly Impact
+
+# Research Income and Grants
+
+```{r echo=FALSE}
+grants <- read.csv("grants.csv")
+```
+
+This following section provides a summary of research income to date which totals `r paste0("$",format(sum(grants$Amount), big.mark=","))`, with `r paste0("$",format(sum(grants[grants$PI_CO_I == "PI",]$Amount), big.mark=","))` as Principal Investigator (PI) and `r paste0("$",format(sum(grants[grants$PI_CO_I == "Co-A",]$Amount), big.mark=","))` as Co-Applicant (Co-A) and `r paste0("$",format(sum(grants[grants$PI_CO_I == "Collaborator",]$Amount), big.mark=","))` as Collaborator.
+
+
+```{r echo=FALSE, results="asis",comment=FALSE}
+
+years <- unique(grants$Year)[order(unique(grants$Year),decreasing = TRUE)] #Get year list
+
+for (year in years){#years
+
+  cat("*",year,"\n")
+  
+  tmp_grant <- grants[grants$Year == year,]
+  
+for (i in 1:nrow(tmp_grant)){#line printing loop
+  cat(paste0("\t"))
+  cat("+",paste0("_",tmp_grant[i,]$Funder,"_")," ",paste0(tmp_grant[i,]$Title),paste0("(",tmp_grant[i,]$PI_CO_I,")"),paste0("**$",format(sum(tmp_grant[i,]$Amount), big.mark=",")),"**","\n")
+  
+}#line print
+
+}#years
+
+```
+
+# Service to the Profession
+
+# Consultancies and Contract Research
+
+# Academic Responsibilities
+
+## Graduate Courses Taught
+
+## Undergraduate Courses Taught
+
+## Supervision 
+
+### Ph.D
+
+### M.A.
+
+### Honours
+### Theses examined for other departments at Carleton
+
+# Administrative Responsibilities at Carleton
+
+## Department
+
+## Faculty
+
+## University
