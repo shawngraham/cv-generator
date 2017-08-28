@@ -9,3 +9,5 @@ Shawn's CV generator
 - In my bib files, I use keywords to sort the various entries into the official Carleton U categories. Carleton's categories don't imagine a world where the internet happened, which as you can imagine, is frustrating for me. Anyway. I export the selected entries into new .bib files for the purposes of generating the cv.
 
 My intention is to add to the bib files throughout the year, and generate the updated cv & annual report once. I had been adding to a word doc higglypiggly but that didn't work worth a damn, and I was making mistakes.
+
+Note that there are errors in the bib files that I haven't fixed yet.
